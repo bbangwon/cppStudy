@@ -5,9 +5,13 @@ class Photon_Cannon {
 	int coord_x, coord_y;
 	int damage;
 
+	char *name;
+
 public:
 	Photon_Cannon(int x, int y);
+	Photon_Cannon(int x, int y, const char* cannon_name);
 	Photon_Cannon(const Photon_Cannon& pc);
+	~Photon_Cannon();
 
 	void show_status();
 };
@@ -19,14 +23,37 @@ Photon_Cannon::Photon_Cannon(const Photon_Cannon& pc) {
 	coord_x = pc.coord_x;
 	coord_y = pc.coord_y;
 	damage = pc.damage;
+
+	int nameBufferSize = strlen(pc.name) + 1;
+	name = new char[nameBufferSize];
+	strcpy_s(name, nameBufferSize, pc.name);
 }
 
+
+
 Photon_Cannon::Photon_Cannon(int x, int y) {
-	std::cout << "생성자 호출 !" << std::endl;
 	hp = shield = 100;
 	coord_x = x;
 	coord_y = y;
 	damage = 20;
+
+	name = nullptr;
+}
+
+Photon_Cannon::Photon_Cannon(int x, int y, const char* cannon_name)
+{
+	hp = shield = 100;
+	coord_x = x;
+	coord_y = y;
+	damage = 20;
+
+	int nameBufferSize = strlen(cannon_name) + 1;
+	name = new char[nameBufferSize];
+	strcpy_s(name, nameBufferSize, cannon_name);
+}
+Photon_Cannon::~Photon_Cannon()
+{
+	if (name) delete[] name;
 }
 
 void Photon_Cannon::show_status() {
@@ -36,9 +63,8 @@ void Photon_Cannon::show_status() {
 }
 
 int main() {
-	Photon_Cannon pc1(3, 3);
+	Photon_Cannon pc1(3, 3, "Cannon");
 	Photon_Cannon pc2(pc1);
-	Photon_Cannon pc3 = pc2;
 
 	pc1.show_status();
 	pc2.show_status();
