@@ -6,13 +6,13 @@ class string {
 	int len;
 
 public:
-	string(char c, int n);	//ë¬¸ì cê°€ nê°œ ìˆëŠ” ë¬¸ìì—´ë¡œ ì •ì˜
+	string(char c, int n);	//¹®ÀÚ c°¡ n°³ ÀÖ´Â ¹®ÀÚ¿­·Î Á¤ÀÇ
 	string(const char *s);
 	string(const string &s);
 	~string();
 
-	void add_string(const string &s);	//str ë’¤ì— së¥¼ ë¶™ì¸ë‹¤.
-	void copy_string(const string &s);	//str ì— së¥¼ ë³µì‚¬í•œë‹¤.
+	void add_string(const string &s);	//str µÚ¿¡ s¸¦ ºÙÀÎ´Ù.
+	void copy_string(const string &s);	//str ¿¡ s¸¦ º¹»çÇÑ´Ù.
 	int strlen();
 
 	void print_string() {
@@ -77,7 +77,7 @@ int string::strlen()
 
 int main()
 {
-	string s1("ì•ˆë…•í•˜ì„¸ìš”");
+	string s1("¾È³çÇÏ¼¼¿ä");
 	string s2('a', 20);
 	string s3{ s1 };
 

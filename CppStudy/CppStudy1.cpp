@@ -6,7 +6,7 @@ int main()
 {
 	int i;
 
-	std::cout << "ì œê³±í•  ìˆ˜ : ";
+	std::cout << "Á¦°öÇÒ ¼ö : ";
 	std::cin >> i;
 
 	print_square(i);
@@ -16,5 +16,5 @@ int main()
 
 void print_square(int arg)
 {
-	std::cout << "ì „ë‹¬ëœ ì¸ì : " << arg * arg << std::endl;
+	std::cout << "Àü´ŞµÈ ÀÎÀÚ : " << arg * arg << std::endl;
 }

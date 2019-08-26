@@ -17,7 +17,7 @@ public:
 };
 
 Photon_Cannon::Photon_Cannon(const Photon_Cannon& pc) {
-	std::cout << "ë³µì‚¬ ìƒì„±ìž í˜¸ì¶œ !" << std::endl;
+	std::cout << "º¹»ç »ý¼ºÀÚ È£Ãâ !" << std::endl;
 	hp = pc.hp;
 	shield = pc.shield;
 	coord_x = pc.coord_x;
