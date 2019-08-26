@@ -33,7 +33,7 @@ int main()
 	int *p = &number;
 
 	ref++;	//number + 1
-	p++;	//Æ÷ÀÎÅÍ°¡ °¡¸£Å°´Â °÷ÀÇ ÁÖ¼Ò °ªÀÇ Áõ°¡
+	p++;	//í¬ì¸í„°ê°€ ê°€ë¥´í‚¤ëŠ” ê³³ì˜ ì£¼ì†Œ ê°’ì˜ ì¦ê°€
 
 	std::cout << number << std::endl;
 	std::cout << ref << std::endl;

@@ -1,23 +1,23 @@
 #include <iostream>
 
 class Marine {
-	int hp;	//¸¶¸° Ã¼·Â
-	int coord_x, coord_y;	//¸¶¸° À§Ä¡
-	int damage;	//°ø°İ·Â
+	int hp;	//ë§ˆë¦° ì²´ë ¥
+	int coord_x, coord_y;	//ë§ˆë¦° ìœ„ì¹˜
+	int damage;	//ê³µê²©ë ¥
 	bool is_dead;
-	char *name;	// ¸¶¸° ÀÌ¸§
+	char *name;	// ë§ˆë¦° ì´ë¦„
 
 public:
-	Marine();	//±âº» »ı¼ºÀÚ
-	Marine(int x, int y, const char* marine_name);	//ÀÌ¸§±îÁö ÁöÁ¤
-	Marine(int x, int y);	//x,y ÁÂÇ¥¿¡ ¸¶¸° »ı¼º
+	Marine();	//ê¸°ë³¸ ìƒì„±ì
+	Marine(int x, int y, const char* marine_name);	//ì´ë¦„ê¹Œì§€ ì§€ì •
+	Marine(int x, int y);	//x,y ì¢Œí‘œì— ë§ˆë¦° ìƒì„±
 	~Marine();
 
-	int attack();	//µ¥¹ÌÁö¸¦ ¸®ÅÏÇÑ´Ù.
-	void be_attack(int damage_earn);	//ÀÔ´Â µ¥¹ÌÁö
-	void move(int x, int y);	//»õ·Î¿î À§Ä¡
+	int attack();	//ë°ë¯¸ì§€ë¥¼ ë¦¬í„´í•œë‹¤.
+	void be_attack(int damage_earn);	//ì…ëŠ” ë°ë¯¸ì§€
+	void move(int x, int y);	//ìƒˆë¡œìš´ ìœ„ì¹˜
 
-	void show_status();	//»óÅÂ¸¦ º¸¿©ÁØ´Ù.
+	void show_status();	//ìƒíƒœë¥¼ ë³´ì—¬ì¤€ë‹¤.
 };
 
 Marine::Marine() {
@@ -65,7 +65,7 @@ void Marine::show_status() {
 }
 
 Marine::~Marine() {
-	std::cout << name << " ÀÇ ¼Ò¸êÀÚ È£Ãâ ! " << std::endl;
+	std::cout << name << " ì˜ ì†Œë©¸ì í˜¸ì¶œ ! " << std::endl;
 	if (name != nullptr) {
 		delete[] name;
 	}
@@ -81,7 +81,7 @@ int main()
 	marine1.show_status();
 	marine2.show_status();
 
-	std::cout << std::endl << "¸¶¸° 1 ÀÌ ¸¶¸° 2¸¦ °ø°İ! " << std::endl;
+	std::cout << std::endl << "ë§ˆë¦° 1 ì´ ë§ˆë¦° 2ë¥¼ ê³µê²©! " << std::endl;
 	marine2.be_attack(marine1.attack());
 
 	marine1.show_status();
@@ -89,7 +89,7 @@ int main()
 	*/
 
 
-	// ¹è¿­
+	// ë°°ì—´
 	Marine* marines[100];
 
 	marines[0] = new Marine(2, 3, "Marine 2");
@@ -98,7 +98,7 @@ int main()
 	marines[0]->show_status();
 	marines[1]->show_status();
 
-	std::cout << std::endl << "¸¶¸° 1 ÀÌ ¸¶¸° 2¸¦ °ø°İ! " << std::endl;
+	std::cout << std::endl << "ë§ˆë¦° 1 ì´ ë§ˆë¦° 2ë¥¼ ê³µê²©! " << std::endl;
 	marines[0]->be_attack(marines[1]->attack());
 
 	marines[0]->show_status();

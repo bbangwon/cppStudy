@@ -18,8 +18,8 @@ public:
 		weight += (inc / 3);
 	}
 	void view_stat() {
-		std::cout << "ÀÌ µ¿¹°ÀÇ food : " << food << std::endl;
-		std::cout << "ÀÌ µ¿¹°ÀÇ weight : " << weight << std::endl;
+		std::cout << "ì´ ë™ë¬¼ì˜ food : " << food << std::endl;
+		std::cout << "ì´ ë™ë¬¼ì˜ weight : " << weight << std::endl;
 	}
 };
 
