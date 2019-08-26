@@ -17,7 +17,7 @@ public:
 	Marine(int x, int y, int default_damage);
 
 	int attack();	//데미지를 리턴한다.
-	void be_attacked(int damage_earn);	//입는 데미지
+	Marine& be_attacked(int damage_earn);	//입는 데미지
 	void move(int x, int y);	//새로운 위치
 
 	void show_status();	//상태를 보여준다.
@@ -47,10 +47,12 @@ void Marine::move(int x, int y)
 }
 
 int Marine::attack() { return default_damage; }
-void Marine::be_attacked(int damage_earn)
+Marine& Marine::be_attacked(int damage_earn)
 {
 	hp -= damage_earn;
 	if (hp <= 0) is_dead = true;
+
+	return *this;
 }
 
 void Marine::show_status()
@@ -61,24 +63,16 @@ void Marine::show_status()
 	std::cout << " 현재 총 마린 수 : " << total_marine_num << std::endl;
 }
 
-void create_marine()
-{
-	Marine marine3(10, 10, 4);
-	Marine::show_total_marine();
-}
-
 int main()
 {
 	Marine marine1(2, 3, 5);
-	Marine::show_total_marine();
+	marine1.show_status();
 
 	Marine marine2(3, 5, 10);
-	Marine::show_total_marine();
+	marine2.show_status();
 
-	create_marine();
-
-	std::cout << std::endl << "마린 1 이 마린 2 를 공격! " << std::endl;
-	marine2.be_attacked(marine1.attack());
+	std::cout << std::endl << "마린 1 이 마린 2 를 두 번 공격! " << std::endl;
+	marine2.be_attacked(marine1.attack()).be_attacked(marine1.attack());
 
 	marine1.show_status();
 	marine2.show_status();
