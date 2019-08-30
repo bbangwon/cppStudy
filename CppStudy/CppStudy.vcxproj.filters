@@ -39,5 +39,11 @@
     <ClCompile Include="CppStudy8.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="CppStudy9.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CppStudy10.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

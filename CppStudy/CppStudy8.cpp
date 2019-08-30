@@ -16,7 +16,7 @@ public:
 	Marine(int x, int y);	//x, y 좌표에 마린 생성
 	Marine(int x, int y, int default_damage);
 
-	int attack();	//데미지를 리턴한다.
+	int attack() const;	//데미지를 리턴한다.
 	Marine& be_attacked(int damage_earn);	//입는 데미지
 	void move(int x, int y);	//새로운 위치
 
@@ -46,7 +46,9 @@ void Marine::move(int x, int y)
 	coord_y = y;
 }
 
-int Marine::attack() { return default_damage; }
+int Marine::attack() const { 
+	return default_damage; 
+}
 Marine& Marine::be_attacked(int damage_earn)
 {
 	hp -= damage_earn;
