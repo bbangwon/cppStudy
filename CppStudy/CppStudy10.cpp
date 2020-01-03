@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 
 class MyString {
 	char* string_content;	//문자열 데이터를 가리키는 포인터
@@ -25,6 +26,14 @@ public:
 	MyString& insert(int loc, const MyString& str);
 	MyString& insert(int loc, const char* str);
 	MyString& insert(int loc, char c);
+
+	MyString& erase(int loc, int num);
+
+	int find(int find_from, MyString& str) const;
+	int find(int find_from, const char* str) const;
+	int find(int find_from, char c) const;
+
+	int compare(const MyString& str) const;
 };
 
 MyString::MyString(char c) {
@@ -207,20 +216,70 @@ MyString& MyString::insert(int loc, char c) {
 	return insert(loc, temp);
 }
 
+MyString& MyString::erase(int loc, int num) {
+	// loc의 앞부터 시작해서 num 문자를 지운다.
+	if (num < 0 || loc < 0 || loc > string_length) return *this;
+
+	// 지운다는 것은 단순히 뒤의 문자들을 앞으로 끌고 온다고 생각하시면 됩니다.
+
+	for (int i = loc + num; i < string_length; i++)
+	{
+		string_content[i - num] = string_content[i];
+	}
+
+	string_length -= num;
+	return *this;	
+}
+
+int MyString::find(int find_from, MyString& str) const {
+	int i, j;
+	if (str.string_length == 0) return -1;
+	for (i = find_from; i < string_length - str.string_length; i++) {
+		for (j = 0; j < str.string_length; j++) {
+			if (string_content[i + j] != str.string_content[j]) break;
+		}
+
+		if (j == str.string_length) return i;
+	}
+	return -1;	//찾지 못했음
+}
+
+int MyString::find(int find_from, const char* str) const {
+	MyString temp(str);
+	return find(find_from, temp);
+}
+
+int MyString::find(int find_from, char c) const {
+	MyString temp(c);
+	return find(find_from, temp);
+}
+
+int MyString::compare(const MyString& str) const {
+	// (*this) - (str) 을 수행해서 그 1, 0, -1로 그 결과를 리턴한다.
+	// 1은 (*this)가 사전식으로 더 뒤에 온다는 의미. 0은 두 문자열이 같다는 의미, -1은 (*this)가 사전식으로 더 앞에 온다는 의미이다.
+
+	for (int i = 0; i < std::min(string_length, str.string_length); i++) {
+		if (string_content[i] > str.string_content[i])
+			return 1;
+
+		else if (string_content[i] < str.string_content[i])
+			return -1;
+	}
+
+	// 여기까지 했는데 끝나지 않았다면 앞 부분까지 모두 똑같은 것이 된다.
+	//만일 문자열 길이가 같다면 두 문자열은 아예 같은 문자열이 된다.
+
+	if (string_length == str.string_length) return 0;
+
+	//참고로 abc와 abcd의 크기 비교는 abcd가 더 뒤에 오게 된다.
+	else  if (string_length > str.string_length) return 1;
+	else return -1;
+}
+
 int main() {
-	MyString str1("very long string");
-	MyString str2("<some string inserted between>");
-	str1.reserve(30);
+	MyString str1("abcdef");
+	MyString str2("abcde");
 
-	std::cout << "Capacity : " << str1.capacity() << std::endl;
-	std::cout << "String length : " << str1.length() << std::endl;
-	str1.println();
-
-	str1.insert(5, str2);
-	str1.println();
-
-	std::cout << "Capacity : " << str1.capacity() << std::endl;
-	std::cout << "String length : " << str1.length() << std::endl;
-	str1.println();
+	std::cout << "str1 and str2 compare : " << str1.compare(str2) << std::endl;
 }
 
