@@ -34,6 +34,7 @@ public:
 	int find(int find_from, char c) const;
 
 	int compare(const MyString& str) const;
+	bool operator==(MyString& str);
 };
 
 MyString::MyString(char c) {
@@ -276,10 +277,24 @@ int MyString::compare(const MyString& str) const {
 	else return -1;
 }
 
-int main() {
-	MyString str1("abcdef");
-	MyString str2("abcde");
+bool MyString::operator==(MyString &str)
+{
+	return !compare(str);
+}
 
-	std::cout << "str1 and str2 compare : " << str1.compare(str2) << std::endl;
+int main() {
+	MyString str1("a word");
+	MyString str2("sentence");
+	MyString str3("sentence");
+
+	if (str1 == str2)
+		std::cout << "str1 와 str2 같다." << std::endl;
+	else
+		std::cout << "str1 와 str2 는 다르다." << std::endl;
+
+	if (str2 == str3)
+		std::cout << "str2와 str3은 같다." << std::endl;
+	else
+		std::cout << "str2와 str3은 다르다." << std::endl;
 }
 
